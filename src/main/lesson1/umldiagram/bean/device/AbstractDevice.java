@@ -1,26 +1,23 @@
-package main.lesson1.umldiagram.beans.device;
+package main.lesson1.umldiagram.bean.device;
 
-import main.lesson1.umldiagram.beans.accomodation.Apartment;
+import main.lesson1.umldiagram.enums.DeviceType;
 import main.lesson1.umldiagram.interfaces.Switchable;
 
-import java.awt.*;
+import java.awt.Color;
 
 public abstract class AbstractDevice implements Switchable {
 
-    private Apartment apartment;
     private String producerName;
     private String modelName;
     private double price;
     private Color color;
     private double weight;
 
-    public AbstractDevice(Apartment apartment,
-                          String producerName,
+    public AbstractDevice(String producerName,
                           String modelName,
                           double price,
                           Color color,
                           double weight) {
-        this.apartment = apartment;
         this.producerName = producerName;
         this.modelName = modelName;
         this.price = price;
@@ -30,8 +27,8 @@ public abstract class AbstractDevice implements Switchable {
 
     public abstract String getDeviceTitle();
 
-    public Apartment getApartment() {
-        return apartment;
+    public DeviceType getDeviceType() {
+        return DeviceType.DEVICE;
     }
 
     public String getProducerName() {
@@ -63,7 +60,6 @@ public abstract class AbstractDevice implements Switchable {
 
         if (Double.compare(that.price, price) != 0) return false;
         if (Double.compare(that.weight, weight) != 0) return false;
-        if (!apartment.equals(that.apartment)) return false;
         if (!producerName.equals(that.producerName)) return false;
         if (!modelName.equals(that.modelName)) return false;
         return color.equals(that.color);
@@ -71,9 +67,8 @@ public abstract class AbstractDevice implements Switchable {
 
     @Override
     public int hashCode() {
-        int result;
+        int result = 1;
         long temp;
-        result = apartment.hashCode();
         result = 31 * result + producerName.hashCode();
         result = 31 * result + modelName.hashCode();
         temp = Double.doubleToLongBits(price);

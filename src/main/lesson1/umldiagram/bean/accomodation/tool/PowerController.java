@@ -1,4 +1,4 @@
-package main.lesson1.umldiagram.beans.accomodation.tool;
+package main.lesson1.umldiagram.bean.accomodation.tool;
 
 public class PowerController {
 

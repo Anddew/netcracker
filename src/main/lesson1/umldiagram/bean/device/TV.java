@@ -1,18 +1,14 @@
-package main.lesson1.umldiagram.beans.device;
+package main.lesson1.umldiagram.bean.device;
 
-import main.lesson1.umldiagram.beans.accomodation.Apartment;
-
-import java.awt.*;
+import java.awt.Color;
 
 public class TV extends ElectricalDevice {
 
-    private static String title = "TV";
     private int screenSize;
     private boolean has3D;
 
     private TV(Builder builder) {
-        super(builder.apartment,
-              builder.producerName,
+        super(builder.producerName,
               builder.modelName,
               builder.price,
               builder.color,
@@ -23,22 +19,19 @@ public class TV extends ElectricalDevice {
     }
 
     public static class Builder {
-        private Apartment apartment;
         private String producerName;
         private String modelName;
         private double price;
-        private Color color = new Color(0);;
+        private Color color = new Color(0);
         private double weight = 0;
         private int consumedPower;
         private int screenSize = 0;
         private boolean has3D = false;
 
-        public Builder(Apartment apartment,
-                       String producerName,
+        public Builder(String producerName,
                        String modelName,
                        double price,
                        int consumedPower) {
-            this.apartment = apartment;
             this.producerName = producerName;
             this.modelName = modelName;
             this.price = price;
@@ -75,13 +68,13 @@ public class TV extends ElectricalDevice {
         return screenSize;
     }
 
-    public boolean isHas3D() {
+    public boolean has3D() {
         return has3D;
     }
 
     @Override
     public String getDeviceTitle() {
-        return title;
+        return "TV";
     }
 
     @Override

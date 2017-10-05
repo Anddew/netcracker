@@ -1,20 +1,17 @@
-package main.lesson1.umldiagram.beans.device;
+package main.lesson1.umldiagram.bean.device;
 
-import main.lesson1.umldiagram.beans.accomodation.Apartment;
 import main.lesson1.umldiagram.enums.RefrigeratorNoFrostType;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class Refrigerator extends ElectricalDevice {
 
-    private static String title = "Refrigerator";
     private RefrigeratorNoFrostType noFrostType;
     private int noiseLevel;
     private boolean hasIceGenerator;
 
     private Refrigerator(Builder builder) {
-        super(builder.apartment,
-              builder.producerName,
+        super(builder.producerName,
               builder.modelName,
               builder.price,
               builder.color,
@@ -26,7 +23,6 @@ public class Refrigerator extends ElectricalDevice {
     }
 
     public static class Builder {
-        private Apartment apartment;
         private String producerName;
         private String modelName;
         private double price;
@@ -37,13 +33,11 @@ public class Refrigerator extends ElectricalDevice {
         private int noiseLevel = 0;
         private boolean hasIceGenerator = false;
 
-        public Builder(Apartment apartment,
-                       String producerName,
+        public Builder(String producerName,
                        String modelName,
                        double price,
                        int consumedPower,
                        RefrigeratorNoFrostType noFrostType) {
-            this.apartment = apartment;
             this.producerName = producerName;
             this.modelName = modelName;
             this.price = price;
@@ -91,7 +85,7 @@ public class Refrigerator extends ElectricalDevice {
 
     @Override
     public String getDeviceTitle() {
-        return title;
+        return "Refrigerator";
     }
 
     @Override

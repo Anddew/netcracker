@@ -1,44 +1,57 @@
-package main.lesson1.umldiagram.beans.device;
+package main.lesson1.umldiagram.bean.device;
 
-import main.lesson1.umldiagram.beans.accomodation.Apartment;
+import main.lesson1.umldiagram.bean.accomodation.tool.PowerController;
+import main.lesson1.umldiagram.enums.DeviceType;
 
 import java.awt.*;
 
 public abstract class ElectricalDevice extends AbstractDevice {
 
+    private PowerController assignedPowerController;
     private int powerConsumption;
-    private boolean isSwitchOn;
+    private boolean isSwitchedOn;
 
-    public ElectricalDevice(Apartment apartment,
-                            String producerName,
+    public ElectricalDevice(String producerName,
                             String modelName,
                             double price,
                             Color color,
                             double weight,
                             int powerConsumption
     ) {
-        super(apartment, producerName, modelName, price, color, weight);
+        super(producerName, modelName, price, color, weight);
         this.powerConsumption = powerConsumption;
+    }
+
+    public DeviceType getDeviceType() {
+        return DeviceType.ELECTRICAL_DEVICE;
+    }
+
+    public PowerController getAssignedPowerController() {
+        return assignedPowerController;
+    }
+
+    public void assignPowerController(PowerController powerController) {
+        this.assignedPowerController = powerController;
     }
 
     public int getPowerConsumption() {
         return powerConsumption;
     }
 
-    public boolean isSwitchOn() {
-        return isSwitchOn;
+    public boolean isSwitchedOn() {
+        return isSwitchedOn;
     }
 
     @Override
     public final void switchOn() {
-        isSwitchOn = true;
-        getApartment().getPowerController().increasePowerConsumption(powerConsumption);
+        isSwitchedOn = true;
+        assignedPowerController.increasePowerConsumption(powerConsumption);
     }
 
     @Override
     public final void switchOff() {
-        isSwitchOn = false;
-        getApartment().getPowerController().decreasePowerConsumption(powerConsumption);
+        isSwitchedOn = false;
+        assignedPowerController.decreasePowerConsumption(powerConsumption);
     }
 
     @Override
@@ -50,14 +63,14 @@ public abstract class ElectricalDevice extends AbstractDevice {
         ElectricalDevice that = (ElectricalDevice) o;
 
         if (powerConsumption != that.powerConsumption) return false;
-        return isSwitchOn == that.isSwitchOn;
+        return isSwitchedOn == that.isSwitchedOn;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + powerConsumption;
-        result = 31 * result + (isSwitchOn ? 1 : 0);
+        result = 31 * result + (isSwitchedOn ? 1 : 0);
         return result;
     }
 

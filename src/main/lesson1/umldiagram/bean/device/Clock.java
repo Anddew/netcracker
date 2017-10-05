@@ -1,19 +1,15 @@
-package main.lesson1.umldiagram.beans.device;
+package main.lesson1.umldiagram.bean.device;
 
-import main.lesson1.umldiagram.beans.accomodation.Apartment;
-
-import java.awt.*;
+import java.awt.Color;
 
 public class Clock extends AbstractDevice {
 
-    private static String title = "Clock";
     private boolean hasLEDDisplay;
     private boolean hasRadio;
     private boolean isSwitchOn;
 
     private Clock(Builder builder) {
-        super(builder.apartment,
-              builder.producerName,
+        super(builder.producerName,
               builder.modelName,
               builder.price,
               builder.color,
@@ -23,7 +19,6 @@ public class Clock extends AbstractDevice {
     }
 
     public static class Builder {
-        private Apartment apartment;
         private String producerName;
         private String modelName;
         private double price;
@@ -32,11 +27,9 @@ public class Clock extends AbstractDevice {
         private boolean hasLEDDisplay = false;
         private boolean hasRadio = false;
 
-        public Builder(Apartment apartment,
-                       String producerName,
+        public Builder(String producerName,
                        String modelName,
                        double price) {
-            this.apartment = apartment;
             this.producerName = producerName;
             this.modelName = modelName;
             this.price = price;
@@ -92,7 +85,7 @@ public class Clock extends AbstractDevice {
 
     @Override
     public String getDeviceTitle() {
-        return title;
+        return "Clock";
     }
 
     @Override
