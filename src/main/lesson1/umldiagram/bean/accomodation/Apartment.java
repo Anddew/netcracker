@@ -19,6 +19,7 @@ public class Apartment {
 
     public void addDevice(AbstractDevice device) {
         deviceList.add(device);
+        // TODO: 05.10.2017 add listener!
         if(device.getDeviceType() == DeviceType.ELECTRICAL_DEVICE) {
             ElectricalDevice electricalDevice = (ElectricalDevice) device;
             electricalDevice.assignPowerController(powerController);
